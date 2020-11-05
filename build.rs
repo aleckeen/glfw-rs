@@ -1,4 +1,19 @@
 fn main() {
+    // download the repository if it isn't already.
+    if !std::path::Path::new("glfw/.git").exists() {
+        std::process::Command::new("git")
+            .args(&["submodule", "update", "--init", "glfw"])
+            .status()
+            .unwrap();
+    }
+    // clean the repository.
+    std::process::Command::new("git")
+        .current_dir("glfw")
+        .args(&["clean", "-fd"])
+        .status()
+        .unwrap();
+
+    // compile the library using cmake.
     let dst = cmake::Config::new("glfw")
         .define("BUILD_SHARED_LIBS", "OFF")
         .define("GLFW_BUILD_EXAMPLES", "OFF")
@@ -6,6 +21,7 @@ fn main() {
         .define("GLFW_BUILD_DOCS", "OFF")
         .build();
 
+    // generate bindings.
     let bindings = bindgen::builder()
         .header("glfw/include/GLFW/glfw3.h")
         .generate_comments(false)
