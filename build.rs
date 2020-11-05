@@ -37,6 +37,11 @@ fn main() {
     let out: std::path::PathBuf = std::env::var("OUT_DIR").unwrap().parse().unwrap();
     bindings.write_to_file(out.join("bindings.rs")).unwrap();
 
-    println!("cargo:rustc-link-search=native={}", dst.join("lib").display());
+    println!(
+        "cargo:rustc-link-search=native={}",
+        dst.join("lib").display()
+    );
     println!("cargo:rustc-link-lib=static=glfw3");
+
+    println!("cargo:rustc-link-lib=X11");
 }
