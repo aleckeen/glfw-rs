@@ -1,0 +1,11 @@
+[package]
+name = "glfw"
+version = "0.1.0"
+authors = ["Alec Keen <aleckeen@tutanota.com>"]
+edition = "2018"
+
+[dependencies]
+
+[build-dependencies]
+cmake = "0.1"
+bindgen = "0.55"
