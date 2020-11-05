@@ -25,12 +25,12 @@ fn main() {
     let bindings = bindgen::builder()
         .header("glfw/include/GLFW/glfw3.h")
         .generate_comments(false)
-        .whitelist_var("glfw.*")
-        .whitelist_function("glfw.*")
-        .whitelist_type("glfw.*")
-        .whitelist_var("gl.*")
-        .whitelist_function("gl.*")
-        .whitelist_type("gl.*")
+        .whitelist_var("[gG][lL][fF][wW].*")
+        .whitelist_function("[gG][lL][fF][wW].*")
+        .whitelist_type("[gG][lL][fF][wW].*")
+        .whitelist_var("[gG][lL].*")
+        .whitelist_function("[gG][lL].*")
+        .whitelist_type("[gG][lL].*")
         .generate()
         .unwrap();
 
